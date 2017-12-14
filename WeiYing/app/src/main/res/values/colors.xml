@@ -4,9 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-<<<<<<< HEAD
-
-=======
     <color name="main">#FF5001</color>
     <color name="mainAdd">#DD3000</color>
     <!--radiobutton红色-->
@@ -311,5 +308,5 @@
     <color name="greyAdd">#666666</color>
     <color name="white">#FFFFFF</color>
     <color name="whiteAdd">#F3F3F3</color>
->>>>>>> 0059a931e5dc4ca44226588579ea016cb86f928f
+
 </resources>

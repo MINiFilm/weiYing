@@ -17,7 +17,6 @@ import com.weiying.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.yuqirong.cardswipelayout.CardConfig;
 import me.yuqirong.cardswipelayout.CardItemTouchHelperCallback;
 import me.yuqirong.cardswipelayout.CardLayoutManager;
 import me.yuqirong.cardswipelayout.OnSwipeListener;
@@ -55,28 +54,9 @@ public class FragmentFind extends Fragment {
         cardCallback.setOnSwipedListener(new OnSwipeListener<Integer>() {
 
             @Override
-            public void onSwiping(RecyclerView.ViewHolder viewHolder, float ratio, int direction) {
-             /*   MyAdapter.MyViewHolder myHolder = (MyAdapter.MyViewHolder) viewHolder;
-                viewHolder.itemView.setAlpha(1 - Math.abs(ratio) * 0.2f);
-                if (direction == CardConfig.SWIPING_LEFT) {
-                    myHolder.dislikeImageView.setAlpha(Math.abs(ratio));
-                } else if (direction == CardConfig.SWIPING_RIGHT) {
-                    myHolder.likeImageView.setAlpha(Math.abs(ratio));
-                } else {
-                    myHolder.dislikeImageView.setAlpha(0f);
-                    myHolder.likeImageView.setAlpha(0f);
-                }*/
-            }
-
+            public void onSwiping(RecyclerView.ViewHolder viewHolder, float ratio, int direction) {}
             @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, Integer o, int direction) {
-               /* MyAdapter.MyViewHolder myHolder = (MyAdapter.MyViewHolder) viewHolder;
-                viewHolder.itemView.setAlpha(1f);
-                myHolder.dislikeImageView.setAlpha(0f);
-                myHolder.likeImageView.setAlpha(0f);*/
-                Toast.makeText(getContext(), direction == CardConfig.SWIPED_LEFT ? "swiped left" : "swiped right", Toast.LENGTH_SHORT).show();
-            }
-
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, Integer o, int direction) {}
             @Override
             public void onSwipedClear() {
                 Toast.makeText(getContext(), "data clear", Toast.LENGTH_SHORT).show();
