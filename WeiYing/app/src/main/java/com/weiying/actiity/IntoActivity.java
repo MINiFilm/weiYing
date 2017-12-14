@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.weiying.R;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class IntoActivity extends AppCompatActivity {
     @Bind(R.id.iv_into)
@@ -18,6 +19,7 @@ public class IntoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_into);
+        ButterKnife.bind(this);
         Animation animation= AnimationUtils.loadAnimation(this,R.anim.scale);
         iv_into.startAnimation(animation);
         animation.setAnimationListener(new Animation.AnimationListener() {
@@ -29,6 +31,7 @@ public class IntoActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 startActivity(new Intent(IntoActivity.this,MainActivity.class));
+                finish();
             }
 
             @Override
