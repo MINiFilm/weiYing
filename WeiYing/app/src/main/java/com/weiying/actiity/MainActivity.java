@@ -6,6 +6,9 @@ import android.support.v4.app.FragmentManager;
 import android.widget.RadioGroup;
 
 import com.weiying.R;
+import com.weiying.fragment.FragmentChoice;
+import com.weiying.fragment.FragmentFind;
+import com.weiying.fragment.FragmentMine;
 import com.weiying.fragment.FragmentSpecial;
 
 import butterknife.Bind;
