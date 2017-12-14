@@ -22,6 +22,8 @@ public class FragmentSpecial extends Fragment {
     @Bind(R.id.rv_special)
     RecyclerView rvSpecial;
 
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
