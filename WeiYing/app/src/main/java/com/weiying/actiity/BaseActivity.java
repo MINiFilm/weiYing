@@ -19,7 +19,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
+
         //沉浸式
         immersionBar = ImmersionBar.with(this);
         immersionBar.init();
