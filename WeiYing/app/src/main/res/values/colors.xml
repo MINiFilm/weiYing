@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+
     <color name="white_translucent">#30FFFFFF</color>
     <color name="white_translucent_20">#20FFFFFF</color>
     <color name="black_translucent">#50000000</color>
@@ -12,6 +13,13 @@
     <color name="gray_light">#c4c3c9</color>
     <color name="dark_red">#b70000</color>
     <color name="dark_black">#000000</color>
+
+    <color name="main">#FF5001</color>
+    <color name="mainAdd">#DD3000</color>
+    <!--radiobutton红色-->
+    <color name="colormainred">#F23030</color>
+    <!--灰色-->
+    <color name="colorgey">#5D646F</color>
 
     <array name="colors">
         <item>@color/colorBluePrimary</item>
@@ -125,4 +133,9 @@
     <color name="colorBlueGreyPrimaryDark">#455A64</color>
     <color name="colorBlueGreyAccent">#FF4081</color>
     <color name="colorBlueGreyPrimaryCenter">#27373e</color>
+
+    <color name="greyAdd">#666666</color>
+    <color name="whitel">#FFFFFF</color>
+    <color name="whiteAdd">#F3F3F3</color>
+
 </resources>
