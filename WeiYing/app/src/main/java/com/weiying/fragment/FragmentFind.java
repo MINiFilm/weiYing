@@ -45,7 +45,6 @@ public class FragmentFind extends Fragment {
         initData();
 
         return view;
-
     }
 
     private void initView(View view) {
