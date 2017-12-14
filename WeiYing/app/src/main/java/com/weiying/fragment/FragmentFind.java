@@ -104,6 +104,7 @@ public class FragmentFind extends Fragment {
             return list.size();
         }
 
+
         class MyViewHolder extends RecyclerView.ViewHolder {
 
             ImageView avatarImageView;
