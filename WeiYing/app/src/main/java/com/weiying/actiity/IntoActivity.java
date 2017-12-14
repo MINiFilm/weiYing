@@ -21,7 +21,7 @@ public class IntoActivity extends BaseActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if(msg.what==4){
+            if(msg.what==2){
                 startActivity(new Intent(IntoActivity.this,MainActivity.class));
                 finish();
             }
