@@ -17,7 +17,6 @@ import com.weiying.fragment.FragmentMine;
 import com.weiying.fragment.FragmentSpecial;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Bind(R.id.rg)
@@ -39,7 +38,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+
         manager = getSupportFragmentManager();
         addFragment("fragmentHome", new FragmentChoice());
         rb1.setOnClickListener(this);
