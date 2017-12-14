@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.app.Application;
 import android.support.v7.app.AppCompatDelegate;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -46,6 +48,7 @@ public class App extends Application {
 //        初始化realm
         initRealm();
         Realm.init(getApplicationContext());
+        Fresco.initialize(this);
     }
 
     public void registerActivity(Activity act) {
