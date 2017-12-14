@@ -44,7 +44,7 @@ public class FragmentFind extends Fragment {
         initData();
 
         return view;
-        
+
     }
 
     private void initView(View view) {
@@ -53,7 +53,6 @@ public class FragmentFind extends Fragment {
         recyclerView.setAdapter(new MyAdapter());
         CardItemTouchHelperCallback cardCallback = new CardItemTouchHelperCallback(recyclerView.getAdapter(), list);
         cardCallback.setOnSwipedListener(new OnSwipeListener<Integer>() {
-
             @Override
             public void onSwiping(RecyclerView.ViewHolder viewHolder, float ratio, int direction) {}
             @Override

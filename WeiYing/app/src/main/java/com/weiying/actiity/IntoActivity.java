@@ -2,7 +2,8 @@ package com.weiying.actiity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.os.Handler;
+import android.os.Message;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -12,9 +13,20 @@ import com.weiying.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class IntoActivity extends AppCompatActivity {
+public class IntoActivity extends BaseActivity {
     @Bind(R.id.iv_into)
     ImageView iv_into;
+    private int i=5;
+    private Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if(msg.what==4){
+                startActivity(new Intent(IntoActivity.this,MainActivity.class));
+                finish();
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,22 +34,27 @@ public class IntoActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Animation animation= AnimationUtils.loadAnimation(this,R.anim.scale);
         iv_into.startAnimation(animation);
-        animation.setAnimationListener(new Animation.AnimationListener() {
+        new Thread(){
             @Override
-            public void onAnimationStart(Animation animation) {
-
+            public void run() {
+                super.run();
+                while(true){
+                    try {
+                        Thread.sleep(1000);
+                        i--;
+                        handler.sendEmptyMessage(i);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
+        }.start();
 
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                startActivity(new Intent(IntoActivity.this,MainActivity.class));
-                finish();
-            }
+    }
 
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 }
