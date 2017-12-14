@@ -29,7 +29,7 @@ public class FragmentSpecial extends Fragment {
         View view = inflater.inflate(R.layout.fragment_special, container, false);
         ButterKnife.bind(this, view);
 
- 
+
 
         return view;
     }
