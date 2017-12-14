@@ -19,7 +19,7 @@ public interface ApiService {
      *  首页  专题
      *   http://api.svipmovie.com/front/homePageApi/homePage.do
      */
-    @GET("front/homePageApi/homePage.do")
+    @GET("homePageApi/homePage.do")
     Flowable<ChoiceBean> getChoiceData();
 
     /**
