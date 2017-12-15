@@ -17,7 +17,6 @@ public class ChoicePresenter {
     private ChoiceView choiceView;
     private final ChoiceModel choiceModel;
     private CompositeDisposable disposable;
-
     public ChoicePresenter(ChoiceView choiceView) {
         this.choiceView = choiceView;
         choiceModel = new ChoiceModel();
@@ -26,7 +25,8 @@ public class ChoicePresenter {
     public void getCData(){
         disposable = new CompositeDisposable();
         Flowable<ChoiceBean> data = choiceModel.getData();
-        DisposableSubscriber<ChoiceBean> disposableSubscriber = data.subscribeOn(Schedulers.io())
+        DisposableSubscriber<ChoiceBean> disposableSubscriber =
+                data.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSubscriber<ChoiceBean>() {
                     @Override

@@ -12,6 +12,7 @@
     android:background="@drawable/card_bg_def"
     android:layout_height="500dp">
     <TextView
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:text="zss"
         android:gravity="center"

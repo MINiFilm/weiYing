@@ -10,11 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.weiying.R;
+import com.weiying.bean.FindBean;
+import com.weiying.mvp.find_mvp.Find_Presenter;
+import com.weiying.mvp.find_mvp.IFind_View;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import me.yuqirong.cardswipelayout.CardItemTouchHelperCallback;
@@ -27,9 +31,13 @@ import me.yuqirong.cardswipelayout.OnSwipeListener;
  * 3.@date2017/12/14  14：02
  */
 
-public class FragmentFind extends Fragment {
+public class FragmentFind extends Fragment implements View.OnClickListener,IFind_View {
     View view;
-    private List<Integer> list = new ArrayList<>();
+    private Find_Presenter find_presenter;
+    int num=9;
+    private List<FindBean.RetBean.ListBean> dataList;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,50 +48,66 @@ public class FragmentFind extends Fragment {
         if (parent!=null){
             parent.removeView(view);
         }
-        initView(view);
-        initData();
+        find_presenter = new Find_Presenter(this);
+        find_presenter.getData(num);
 
         return view;
 
     }
 
-    private void initView(View view) {
+    private void ininData(final List<FindBean.RetBean.ListBean> list) {
         final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(new MyAdapter());
+
         CardItemTouchHelperCallback cardCallback = new CardItemTouchHelperCallback(recyclerView.getAdapter(), list);
-        cardCallback.setOnSwipedListener(new OnSwipeListener<Integer>() {
+        cardCallback.setOnSwipedListener(new OnSwipeListener<FindBean.RetBean.ListBean>() {
             @Override
             public void onSwiping(RecyclerView.ViewHolder viewHolder, float ratio, int direction) {}
+
             @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, Integer o, int direction) {}
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, FindBean.RetBean.ListBean listBean, int direction) {}
             @Override
             public void onSwipedClear() {
                 Toast.makeText(getContext(), "data clear", Toast.LENGTH_SHORT).show();
                 recyclerView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        initData();
+                        ininData(list);
                         recyclerView.getAdapter().notifyDataSetChanged();
                     }
                 }, 3000L);
             }
 
         });
+
+
         final ItemTouchHelper touchHelper = new ItemTouchHelper(cardCallback);
         final CardLayoutManager cardLayoutManager = new CardLayoutManager(recyclerView, touchHelper);
         recyclerView.setLayoutManager(cardLayoutManager);
         touchHelper.attachToRecyclerView(recyclerView);
     }
 
-    private void initData() {
-        list.add(R.drawable.img_avatar_01);
-        list.add(R.drawable.img_avatar_02);
-        list.add(R.drawable.img_avatar_03);
-        list.add(R.drawable.img_avatar_04);
-        list.add(R.drawable.img_avatar_05);
-        list.add(R.drawable.img_avatar_06);
-        list.add(R.drawable.img_avatar_07);
+  /*  private void initView(View view) {
+
+
+        final FindBean fileBean=new FindBean();
+
+
+    }*/
+
+
+    @Override
+    public void onClick(View v) {
+
+    }
+
+    @Override
+    public void showData(FindBean findBean) {
+        dataList = findBean.getRet().getList();
+        ininData(dataList);
+
+
     }
 
     private class MyAdapter extends RecyclerView.Adapter {
@@ -96,22 +120,30 @@ public class FragmentFind extends Fragment {
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             ImageView avatarImageView = ((MyViewHolder) holder).avatarImageView;
-            avatarImageView.setImageResource(list.get(position));
+            TextView tv_name = ((MyViewHolder) holder).tv_name;
+            tv_name.setText("　　"+dataList.get(position).getDescription());
+            TextView tv_title = ((MyViewHolder) holder).tv_title;
+            tv_title.setText(dataList.get(position).getTitle());
+            //avatarImageView.setImageResource(list.get(position).getPic());
+            Glide.with(getActivity()).load(dataList.get(position).getPic())
+                    .into(avatarImageView);
         }
 
         @Override
         public int getItemCount() {
-            return list.size();
+            return dataList.size();
         }
 
 
         class MyViewHolder extends RecyclerView.ViewHolder {
-
             ImageView avatarImageView;
-
+            TextView tv_title;
+            TextView tv_name;
             MyViewHolder(View itemView) {
                 super(itemView);
                 avatarImageView = (ImageView) itemView.findViewById(R.id.iv_avatar);
+                tv_title= (TextView) itemView.findViewById(R.id.tv_title);
+                tv_name= (TextView) itemView.findViewById(R.id.tv_name);
             }
 
         }
