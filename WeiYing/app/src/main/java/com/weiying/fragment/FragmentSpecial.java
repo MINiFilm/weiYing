@@ -59,7 +59,7 @@ public class FragmentSpecial extends Fragment implements ChoiceView {
 
         for (int i = 0; i < list.size(); i++) {
             ChoiceBean.RetBean.ListBean listBean = list.get(i);
-            if(listBean.getLoadType().equals("videoList") ){
+            if(listBean.getLoadType().equals("videoList") && listBean.getShowType().equals("IN") ){
                 l.add(listBean);
             }
         }
