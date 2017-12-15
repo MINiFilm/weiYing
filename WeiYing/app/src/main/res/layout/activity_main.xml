@@ -8,8 +8,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFDF0C3D"
+<<<<<<< HEAD
         ></LinearLayout>
 
+=======
+        >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn"
+            android:text="主题"
+            />
+
+
+    </LinearLayout>
+>>>>>>> 5bebf619253c7146eb677420b71fab0291c67202
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"

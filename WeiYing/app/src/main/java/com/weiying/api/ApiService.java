@@ -19,7 +19,7 @@ public interface ApiService {
      *  首页  专题
      *   http://api.svipmovie.com/front/homePageApi/homePage.do
      */
-    @GET("front/homePageApi/homePage.do")
+    @GET("homePageApi/homePage.do")
     Flowable<ChoiceBean> getChoiceData();
 
     /**
@@ -27,7 +27,7 @@ public interface ApiService {
      * http://api.svipmovie.com/front/columns/getVideoList.do?catalogId=402834815584e463015584e539330016&pnum=9
      */
     @GET("columns/getVideoList.do")
-    Flowable<FindBean> getFindData(@Query("catalogId") String catalogId, @Query("pnum") String pnum);
+    Flowable<FindBean> getFindData(@Query("catalogId") String catalogId, @Query("pnum") int pnum);
 
     /**
      * 评论列表
