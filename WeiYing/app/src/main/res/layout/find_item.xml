@@ -12,12 +12,13 @@
     android:background="@drawable/card_bg_def"
     android:layout_height="500dp">
     <TextView
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:text="zss"
         android:gravity="center"
         android:layout_gravity="center"
         android:textColor="#fefefe"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:layout_height="50dp"
         />
     <RelativeLayout
@@ -41,7 +42,7 @@
             android:text="　　nnnnnnnndfsssssssssssssss"
             android:textColor="#ffcccc"
             android:layout_marginLeft="15dp"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
 
 </LinearLayout>
