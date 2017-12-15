@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +62,7 @@ public class FragmentSpecial extends Fragment implements ChoiceView {
 
         for (int i = 0; i < list.size(); i++) {
             ChoiceBean.RetBean.ListBean listBean = list.get(i);
-            if(listBean.getLoadType().equals("videoList") && listBean.getShowType().equals("IN") ){
+            if(!listBean.getMoreURL().equals("") ){
                 l.add(listBean);
             }
         }
@@ -72,11 +73,28 @@ public class FragmentSpecial extends Fragment implements ChoiceView {
         adapter.setOnClicker(new MySpecialAdapter.OnClicker() {
             @Override
             public void onItemClick(int position) {
+
                 Intent intent = new Intent(getActivity(), SpecialDetailsActivity.class);
-                
+                intent.putExtra("detailsCatalogId",getCatalogId(l.get(position).getMoreURL()));
+                intent.putExtra("detailsTitle",l.get(position).getTitle());
                 startActivity(intent);
             }
         });
 
     }
+
+    /**
+     * 根据Url获取catalogId
+     *
+     * @param url
+     * @return
+     */
+    public static String getCatalogId(String url) {
+        String catalogId = "";
+        String key = "catalogId=";
+        if (!TextUtils.isEmpty(url) && url.contains("="))
+            catalogId = url.substring(url.indexOf(key) + key.length(), url.lastIndexOf("&"));
+        return catalogId;
+    }
+
 }

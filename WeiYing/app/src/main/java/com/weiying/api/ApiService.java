@@ -4,6 +4,7 @@ import com.weiying.bean.ChoiceBean;
 import com.weiying.bean.CommandBean;
 import com.weiying.bean.DetailsBean;
 import com.weiying.bean.FindBean;
+import com.weiying.bean.SpectialDetailsBean;
 
 import io.reactivex.Flowable;
 import retrofit2.http.GET;
@@ -28,6 +29,14 @@ public interface ApiService {
      */
     @GET("columns/getVideoList.do")
     Flowable<FindBean> getFindData(@Query("catalogId") String catalogId, @Query("pnum") int pnum);
+
+    /**
+     * 发现
+     * http://api.svipmovie.com/front/columns/getVideoList.do?catalogId=402834815584e463015584e539330016&pnum=9
+     */
+    @GET("columns/getVideoList.do")
+    Flowable<SpectialDetailsBean> getSpecialDetailsData(@Query("catalogId") String catalogId);
+
 
     /**
      * 评论列表
