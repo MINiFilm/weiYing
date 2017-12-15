@@ -116,7 +116,6 @@ public class FragmentFind extends Fragment implements View.OnClickListener,IFind
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.find_item, parent, false);
             return new MyViewHolder(view);
         }
-
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             ImageView avatarImageView = ((MyViewHolder) holder).avatarImageView;
