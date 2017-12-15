@@ -1,5 +1,6 @@
 package com.weiying.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,12 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.weiying.R;
+import com.weiying.actiity.VideoDetailActivity;
+import com.weiying.adapter.MyFindAdapter;
 import com.weiying.bean.FindBean;
 import com.weiying.mvp.find_mvp.Find_Presenter;
 import com.weiying.mvp.find_mvp.IFind_View;
@@ -68,7 +68,20 @@ public class FragmentFind extends Fragment implements View.OnClickListener,IFind
     private void ininData(final List<FindBean.RetBean.ListBean> list) {
         final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(new MyAdapter());
+        MyFindAdapter myFindAdapter = new MyFindAdapter(getContext(), list);
+        recyclerView.setAdapter(myFindAdapter);
+        myFindAdapter.setSetOnClickItem(new MyFindAdapter.SetOnClickItem() {
+            @Override
+            public void setonclickitem(int position) {
+
+                Toast.makeText(getContext(), "第"+position+"个", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getActivity(), VideoDetailActivity.class);
+                intent.putExtra("dataId",list.get(position).getDataId());
+                startActivity(intent);
+
+            }
+        });
+
 
         CardItemTouchHelperCallback cardCallback = new CardItemTouchHelperCallback(recyclerView.getAdapter(), list);
         cardCallback.setOnSwipedListener(new OnSwipeListener<FindBean.RetBean.ListBean>() {
@@ -90,19 +103,14 @@ public class FragmentFind extends Fragment implements View.OnClickListener,IFind
             }
 
         });
-
-
         final ItemTouchHelper touchHelper = new ItemTouchHelper(cardCallback);
         final CardLayoutManager cardLayoutManager = new CardLayoutManager(recyclerView, touchHelper);
         recyclerView.setLayoutManager(cardLayoutManager);
         touchHelper.attachToRecyclerView(recyclerView);
     }
-
     @Override
     public void onClick(View v) {
-
     }
-
     @Override
     public void showData(FindBean findBean) {
         dataList = findBean.getRet().getList();
@@ -111,38 +119,4 @@ public class FragmentFind extends Fragment implements View.OnClickListener,IFind
 
     }
 
-    private class MyAdapter extends RecyclerView.Adapter {
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.find_item, parent, false);
-            return new MyViewHolder(view);
-        }
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            ImageView avatarImageView = ((MyViewHolder) holder).avatarImageView;
-            TextView tv_name = ((MyViewHolder) holder).tv_name;
-            tv_name.setText("　　"+dataList.get(position).getDescription());
-            TextView tv_title = ((MyViewHolder) holder).tv_title;
-            tv_title.setText(dataList.get(position).getTitle());
-            //avatarImageView.setImageResource(list.get(position).getPic());
-            Glide.with(getActivity()).load(dataList.get(position).getPic())
-                    .into(avatarImageView);
-        }
-        @Override
-        public int getItemCount() {
-            return dataList.size();
-        }
-        
-        class MyViewHolder extends RecyclerView.ViewHolder {
-            ImageView avatarImageView;
-            TextView tv_title;
-            TextView tv_name;
-            MyViewHolder(View itemView) {
-                super(itemView);
-                avatarImageView = (ImageView) itemView.findViewById(R.id.iv_avatar);
-                tv_title= (TextView) itemView.findViewById(R.id.tv_title);
-                tv_name= (TextView) itemView.findViewById(R.id.tv_name);
-            }
-        }
-    }
 }
