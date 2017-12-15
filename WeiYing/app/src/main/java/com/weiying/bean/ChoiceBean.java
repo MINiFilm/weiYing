@@ -1,12 +1,13 @@
 package com.weiying.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by dell-pc on 2017/12/13.
  */
 
-public class ChoiceBean {
+public class ChoiceBean implements Serializable {
 
     /**
      * msg : 成功
@@ -42,7 +43,7 @@ public class ChoiceBean {
         this.code = code;
     }
 
-    public static class RetBean {
+    public static class RetBean implements Serializable{
         private List<HotSearchListBean> hotSearchList;
         private List<ListBean> list;
 
@@ -62,7 +63,7 @@ public class ChoiceBean {
             this.list = list;
         }
 
-        public static class HotSearchListBean {
+        public static class HotSearchListBean implements Serializable{
             /**
              * refCounter : 1
              * cnname : xingjichuanyue
@@ -148,7 +149,7 @@ public class ChoiceBean {
             }
         }
 
-        public static class ListBean {
+        public static class ListBean implements Serializable{
             /**
              * showStyle :
              * loadType : videoList
@@ -243,7 +244,7 @@ public class ChoiceBean {
                 this.childList = childList;
             }
 
-            public static class ChildListBean {
+            public static class ChildListBean implements Serializable{
                 /**
                  * airTime : 2011
                  * duration : 02:09:48

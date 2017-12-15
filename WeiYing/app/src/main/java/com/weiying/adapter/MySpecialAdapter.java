@@ -32,12 +32,18 @@ public class MySpecialAdapter extends RecyclerView.Adapter<MySpecialAdapter.MyVi
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.special_item, parent, false);
-        MyViewHolder myViewHolder = new MyViewHolder(view);
+        final MyViewHolder myViewHolder = new MyViewHolder(view);
+        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClicker.onItemClick(myViewHolder.getPosition());
+            }
+        });
         return myViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         ChoiceBean.RetBean.ListBean listBean = list.get(position);
         Log.i("qqq",list.size()+"");
         holder.special_tv.setText(listBean.getTitle());
@@ -46,7 +52,6 @@ public class MySpecialAdapter extends RecyclerView.Adapter<MySpecialAdapter.MyVi
             ChoiceBean.RetBean.ListBean.ChildListBean childListBean = childList.get(i);
             holder.special_iv.setImageURI(Uri.parse(childListBean.getPic()));
         }
-
 
     }
 
@@ -67,4 +72,13 @@ public class MySpecialAdapter extends RecyclerView.Adapter<MySpecialAdapter.MyVi
         }
     }
 
+    public interface OnClicker{
+        void onItemClick(int position);
+    }
+
+    public OnClicker onClicker;
+
+    public void setOnClicker(OnClicker onClicker) {
+        this.onClicker = onClicker;
+    }
 }

@@ -9,7 +9,7 @@
         android:bottom="1dip"/>
 
     <stroke android:width="5dp"
-        android:color="@color/white"
+        android:color="@color/white1"
         />
     <!--边框宽度-->
     <size android:width="15dip"

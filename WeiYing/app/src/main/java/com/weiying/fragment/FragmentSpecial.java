@@ -1,5 +1,6 @@
 package com.weiying.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.weiying.R;
+import com.weiying.actiity.SpecialDetailsActivity;
 import com.weiying.adapter.MySpecialAdapter;
 import com.weiying.bean.ChoiceBean;
 import com.weiying.choice.ChoicePresenter;
@@ -54,7 +56,7 @@ public class FragmentSpecial extends Fragment implements ChoiceView {
     @Override
     public void getChoiceData(ChoiceBean bean) {
         rvSpecial.setLayoutManager(new GridLayoutManager(getActivity(),2));
-        List<ChoiceBean.RetBean.ListBean> l = new ArrayList<>();
+        final List<ChoiceBean.RetBean.ListBean> l = new ArrayList<>();
         List<ChoiceBean.RetBean.ListBean> list = bean.getRet().getList();
 
         for (int i = 0; i < list.size(); i++) {
@@ -66,5 +68,15 @@ public class FragmentSpecial extends Fragment implements ChoiceView {
 
         MySpecialAdapter adapter = new MySpecialAdapter(getActivity(),l);
         rvSpecial.setAdapter(adapter);
+
+        adapter.setOnClicker(new MySpecialAdapter.OnClicker() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(getActivity(), SpecialDetailsActivity.class);
+                
+                startActivity(intent);
+            }
+        });
+
     }
 }
