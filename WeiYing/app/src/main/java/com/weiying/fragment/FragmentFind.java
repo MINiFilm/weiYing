@@ -9,6 +9,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,8 +35,9 @@ import me.yuqirong.cardswipelayout.OnSwipeListener;
 public class FragmentFind extends Fragment implements View.OnClickListener,IFind_View {
     View view;
     private Find_Presenter find_presenter;
-    int num=9;
+    int num=0;
     private List<FindBean.RetBean.ListBean> dataList;
+    private Button button;
 
 
     @Nullable
@@ -48,8 +50,16 @@ public class FragmentFind extends Fragment implements View.OnClickListener,IFind
         if (parent!=null){
             parent.removeView(view);
         }
+        button = (Button) view.findViewById(R.id.find_button);
         find_presenter = new Find_Presenter(this);
         find_presenter.getData(num);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                find_presenter.getData(num++);
+            }
+        });
+
 
         return view;
 
