@@ -3,6 +3,7 @@ package com.weiying.adapter;
 import android.content.Context;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,8 +39,15 @@ public class MySpecialAdapter extends RecyclerView.Adapter<MySpecialAdapter.MyVi
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         ChoiceBean.RetBean.ListBean listBean = list.get(position);
-        holder.special_iv.setImageURI(Uri.parse(listBean.getChildList().get(0).getPic()));
+        Log.i("qqq",list.size()+"");
         holder.special_tv.setText(listBean.getTitle());
+        List<ChoiceBean.RetBean.ListBean.ChildListBean> childList = listBean.getChildList();
+        for (int i = 0; i < childList.size(); i++) {
+            ChoiceBean.RetBean.ListBean.ChildListBean childListBean = childList.get(i);
+            holder.special_iv.setImageURI(Uri.parse(childListBean.getPic()));
+        }
+
+
     }
 
     @Override

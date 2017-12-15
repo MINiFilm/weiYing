@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +15,7 @@ import com.weiying.bean.ChoiceBean;
 import com.weiying.choice.ChoicePresenter;
 import com.weiying.choice.ChoiceView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -53,9 +53,18 @@ public class FragmentSpecial extends Fragment implements ChoiceView {
 
     @Override
     public void getChoiceData(ChoiceBean bean) {
-        List<ChoiceBean.RetBean.ListBean> list = bean.getRet().getList();
         rvSpecial.setLayoutManager(new GridLayoutManager(getActivity(),2));
-        MySpecialAdapter adapter = new MySpecialAdapter(getActivity(),list);
+        List<ChoiceBean.RetBean.ListBean> l = new ArrayList<>();
+        List<ChoiceBean.RetBean.ListBean> list = bean.getRet().getList();
+
+        for (int i = 0; i < list.size(); i++) {
+            ChoiceBean.RetBean.ListBean listBean = list.get(i);
+            if(listBean.getLoadType().equals("videoList") ){
+                l.add(listBean);
+            }
+        }
+
+        MySpecialAdapter adapter = new MySpecialAdapter(getActivity(),l);
         rvSpecial.setAdapter(adapter);
     }
 }
