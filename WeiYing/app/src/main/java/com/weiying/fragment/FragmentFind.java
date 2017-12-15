@@ -127,13 +127,10 @@ public class FragmentFind extends Fragment implements View.OnClickListener,IFind
             Glide.with(getActivity()).load(dataList.get(position).getPic())
                     .into(avatarImageView);
         }
-
         @Override
         public int getItemCount() {
             return dataList.size();
         }
-
-
         class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView avatarImageView;
             TextView tv_title;
