@@ -88,15 +88,6 @@ public class FragmentFind extends Fragment implements View.OnClickListener,IFind
         touchHelper.attachToRecyclerView(recyclerView);
     }
 
-  /*  private void initView(View view) {
-
-
-        final FindBean fileBean=new FindBean();
-
-
-    }*/
-
-
     @Override
     public void onClick(View v) {
 
