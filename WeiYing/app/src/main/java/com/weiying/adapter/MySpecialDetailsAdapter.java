@@ -29,6 +29,22 @@ public class MySpecialDetailsAdapter extends RecyclerView.Adapter<MySpecialDetai
         this.list = list;
     }
 
+    //下拉刷新更多
+    public void refreshMore(List<SpectialDetailsBean.RetBean.ListBean> beanList){
+        for (SpectialDetailsBean.RetBean.ListBean str : beanList){
+            this.list.add(0,str);
+        }
+        notifyDataSetChanged();
+    }
+
+    //上拉加载更多
+    public void loadMore(List<SpectialDetailsBean.RetBean.ListBean> beanList){
+        for (SpectialDetailsBean.RetBean.ListBean str : beanList){
+            this.list.add(str);
+        }
+        notifyDataSetChanged();
+    }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.specialdetails_item, parent, false);

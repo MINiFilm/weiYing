@@ -4,6 +4,7 @@ import com.weiying.bean.SpectialDetailsBean;
 
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.DisposableSubscriber;
 
@@ -11,7 +12,9 @@ import io.reactivex.subscribers.DisposableSubscriber;
  * Created by dell-pc on 2017/12/15.
  */
 
-public class SpecialDetailsPresenter {
+public class SpecialDetailsPresenter{
+
+    CompositeDisposable disposable = null;
 
     private SpecialDetailsModel specialDetailsModel;
     private SpecialDetailsView specialDetailsView;
@@ -22,8 +25,9 @@ public class SpecialDetailsPresenter {
     }
 
     public void passDetails(String catetoryId){
+        disposable = new CompositeDisposable();
         Flowable<SpectialDetailsBean> flowable = specialDetailsModel.getData(catetoryId);
-        flowable.subscribeOn(Schedulers.io())
+        DisposableSubscriber<SpectialDetailsBean> disposableSubscriber = flowable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSubscriber<SpectialDetailsBean>() {
                     @Override
@@ -41,6 +45,14 @@ public class SpecialDetailsPresenter {
 
                     }
                 });
+        disposable.add(disposableSubscriber);
+    }
+
+    public void onDestory(){
+        if(disposable != null){
+            disposable.dispose();
+            specialDetailsView = null;
+        }
     }
 
 }

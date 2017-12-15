@@ -2,6 +2,7 @@ package com.weiying.actiity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -24,32 +25,73 @@ public class SpecialDetailsActivity extends BaseActivity implements SpecialDetai
     TextView tvDetails;
     @Bind(R.id.rv_details)
     RecyclerView rvDetails;
+    @Bind(R.id.swipeRefresh)
+    SwipeRefreshLayout swipeRefresh;
     private SpecialDetailsPresenter presenter;
+    private MySpecialDetailsAdapter adapter;
+    private GridLayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_special_details);
         ButterKnife.bind(this);
-
-
-
+        layoutManager = new GridLayoutManager(SpecialDetailsActivity.this, 3);
+        rvDetails.setLayoutManager(layoutManager);
         Intent intent = getIntent();
-        String detailsCatalogId = intent.getStringExtra("detailsCatalogId");
+        final String detailsCatalogId = intent.getStringExtra("detailsCatalogId");
         String detailsTitle = intent.getStringExtra("detailsTitle");
         tvDetails.setText(detailsTitle);
-        Log.i("www",detailsCatalogId);
+
         presenter = new SpecialDetailsPresenter(this);
-        presenter.passDetails(detailsCatalogId);
+        if(adapter == null){
+            presenter.passDetails(detailsCatalogId);
+        }else{
+            adapter.notifyDataSetChanged();
+        }
+
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.passDetails(detailsCatalogId);
+                //如果正在刷新  完成后设置为false
+                if(swipeRefresh.isRefreshing()){
+                    swipeRefresh.setRefreshing(false);
+                }
+            }
+        });
+
+        rvDetails.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            private int lastPosition;
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(lastPosition+1 == adapter.getItemCount() && newState == RecyclerView.SCROLL_STATE_IDLE){
+                    presenter.passDetails(detailsCatalogId);
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                lastPosition = layoutManager.findLastVisibleItemPosition();
+            }
+        });
 
     }
 
     @Override
     public void showDetailsData(SpectialDetailsBean spectialDetailsBean) {
         List<SpectialDetailsBean.RetBean.ListBean> listBeen = spectialDetailsBean.getRet().getList();
-        Log.i("ppp",listBeen.size()+"");
-        rvDetails.setLayoutManager(new GridLayoutManager(SpecialDetailsActivity.this,3));
-        MySpecialDetailsAdapter adapter = new MySpecialDetailsAdapter(SpecialDetailsActivity.this,listBeen);
+        Log.i("ppp", listBeen.size() + "");
+
+        adapter = new MySpecialDetailsAdapter(SpecialDetailsActivity.this, listBeen);
         rvDetails.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDestory();
     }
 }
