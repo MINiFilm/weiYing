@@ -45,12 +45,9 @@ dependencies {
     compile 'com.gyf.barlibrary:barlibrary:2.2.9'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.android.support:recyclerview-v7:23.2.0'
-<<<<<<< HEAD
 
-=======
     testCompile 'junit:junit:4.12'
->>>>>>> 3ea12eec773adfeacf057eb74dc392e96a1578da
-    apt 'com.google.dagger:dagger-compiler:2.4'
+
 
 
 }
