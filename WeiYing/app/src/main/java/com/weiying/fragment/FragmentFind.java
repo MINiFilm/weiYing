@@ -141,7 +141,6 @@ public class FragmentFind extends Fragment implements View.OnClickListener,IFind
                 tv_title= (TextView) itemView.findViewById(R.id.tv_title);
                 tv_name= (TextView) itemView.findViewById(R.id.tv_name);
             }
-
         }
     }
 }
