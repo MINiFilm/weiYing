@@ -132,6 +132,7 @@ public class FragmentFind extends Fragment implements View.OnClickListener,IFind
         public int getItemCount() {
             return dataList.size();
         }
+        
         class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView avatarImageView;
             TextView tv_title;
