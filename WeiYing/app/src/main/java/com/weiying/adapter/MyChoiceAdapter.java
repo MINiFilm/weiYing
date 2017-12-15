@@ -1,6 +1,7 @@
 package com.weiying.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,8 @@ import java.util.List;
 public class MyChoiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private ChoiceBean choiceBean;
+
+
     public MyChoiceAdapter(Context context,ChoiceBean choiceBean) {
         this.context = context;
         this.choiceBean=choiceBean;
@@ -30,12 +33,12 @@ public class MyChoiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if(viewType==0){
-            View inflate = LayoutInflater.from(context).inflate(R.layout.choice_banner, null);
+            View inflate = LayoutInflater.from(context).inflate(R.layout.choice_banner, parent,false);
             bannerViewHolder bannerViewHolder=new bannerViewHolder(inflate);
             return bannerViewHolder;
         }
         if(viewType==1){
-            View inflate = LayoutInflater.from(context).inflate(R.layout.choice_recycle, null);
+            View inflate = LayoutInflater.from(context).inflate(R.layout.choice_recycle, parent,false);
             bannerViewHolder bannerViewHolder=new bannerViewHolder(inflate);
             return bannerViewHolder;
         }
@@ -46,11 +49,11 @@ public class MyChoiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         int type = getItemViewType(position);
 
-
+        List<ChoiceBean.RetBean.ListBean> list = choiceBean.getRet().getList();
         if(type==0){
             List<String> bannerImgs=new ArrayList<>();
             List<String> bannerTitle=new ArrayList<>();
-            List<ChoiceBean.RetBean.ListBean> list = choiceBean.getRet().getList();
+
             for (int i = 0; i < list.size(); i++) {
                 ChoiceBean.RetBean.ListBean listBean = list.get(i);
                 if(listBean.getTitle().equals("免费推荐")){
@@ -73,6 +76,17 @@ public class MyChoiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             b.choice_banner.isAutoPlay(true);
             b.choice_banner.setDelayTime(3000);
             b.choice_banner.start();
+        }else  if(type==1){
+            for (int i = 0; i < list.size(); i++) {
+                ChoiceBean.RetBean.ListBean listBean = list.get(i);
+                if(listBean.getTitle().equals("精彩推荐")){
+                    List<ChoiceBean.RetBean.ListBean.ChildListBean> childList = listBean.getChildList();
+                    jinCaiViewHolder j=new jinCaiViewHolder(holder.itemView);
+
+                    MyFunnyAdapter adapter=new MyFunnyAdapter(context,childList);
+                    j.recycle_jinCai.setAdapter(adapter );
+                }
+            }
         }
     }
 
@@ -87,7 +101,7 @@ public class MyChoiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public int getItemViewType(int position) {
         if(position==0){
             return 0;
-        }else if(position==1){
+        }else if(position!=0){
             return 1;
         }
         return super.getItemViewType(position);
@@ -110,6 +124,10 @@ public class MyChoiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         public jinCaiViewHolder(View itemView) {
             super(itemView);
             recycle_jinCai = (RecyclerView) itemView.findViewById(R.id.recycle_JinCai);
+            LinearLayoutManager manager=new LinearLayoutManager(context);
+            recycle_jinCai.setLayoutManager(manager);
+
+
         }
     }
 }
