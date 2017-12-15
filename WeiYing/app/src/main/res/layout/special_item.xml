@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width=""
+    android:layout_width="170dp"
     android:gravity="center"
     android:layout_height="120dp"
     android:background="@drawable/border_white"
@@ -14,7 +14,7 @@
         android:id="@+id/special_iv"
         android:layout_width="160dp"
         android:layout_height="110dp"
-        android:background="@mipmap/default_320"/>
+        android:background="defa"/>
 
     <TextView
         android:id="@+id/special_tv"
