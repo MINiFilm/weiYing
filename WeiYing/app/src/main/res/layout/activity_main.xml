@@ -3,10 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFDF0C3D"
+<<<<<<< HEAD
+        ></LinearLayout>
+
+=======
         >
         <Button
             android:layout_width="wrap_content"
@@ -17,6 +22,7 @@
 
 
     </LinearLayout>
+>>>>>>> 5bebf619253c7146eb677420b71fab0291c67202
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
