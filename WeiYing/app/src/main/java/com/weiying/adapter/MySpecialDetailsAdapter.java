@@ -52,7 +52,7 @@ public class MySpecialDetailsAdapter extends RecyclerView.Adapter<MySpecialDetai
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClicker.onItemClick(myViewHolder.getPosition());
+                onsClicker.onItemClick(myViewHolder.getPosition());
             }
         });
         return myViewHolder;
@@ -83,13 +83,13 @@ public class MySpecialDetailsAdapter extends RecyclerView.Adapter<MySpecialDetai
         }
     }
 
-    public interface OnClicker{
+    public interface OnsClicker{
         void onItemClick(int position);
     }
 
-    public OnClicker onClicker;
+    public OnsClicker onsClicker;
 
-    public void setOnClicker(OnClicker onClicker) {
-        this.onClicker = onClicker;
+    public void setOnsClicker(OnsClicker onsClicker) {
+        this.onsClicker = onsClicker;
     }
 }

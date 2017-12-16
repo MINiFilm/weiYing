@@ -1,12 +1,13 @@
 package com.weiying.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by dell-pc on 2017/12/13.
  */
 
-public class DetailsBean {
+public class DetailsBean implements Serializable{
 
     /**
      * msg : 成功
@@ -42,7 +43,7 @@ public class DetailsBean {
         this.code = code;
     }
 
-    public static class RetBean {
+    public static class RetBean implements Serializable{
         /**
          * couponNum : 0
          * HDURL : http://movie.vods1.cnlive.com/3/vod/2017/0613/3_db3ce134f3ba4e81adad58b477c939b4/ff8080815bf6b453015ca0f808912345_1500.m3u8
@@ -307,7 +308,7 @@ public class DetailsBean {
             this.list = list;
         }
 
-        public static class TicketContentBean {
+        public static class TicketContentBean implements Serializable{
             /**
              * score : 8.5分
              * name : 巨额来电
@@ -373,7 +374,7 @@ public class DetailsBean {
             }
         }
 
-        public static class AdvBean {
+        public static class AdvBean implements Serializable{
             /**
              * imgURL :
              * dataId :
@@ -429,7 +430,7 @@ public class DetailsBean {
             }
         }
 
-        public static class ListBean {
+        public static class ListBean implements Serializable{
             /**
              * showType : horizontal
              * childList : [{"airTime":2016,"duration":"00:01:06","loadtype":"video","score":0,"angleIcon":"","dataId":"7118aea2a76a4a22a203c07ca9d27c83","description":"@TV娱乐前线：韩国《太阳的后裔》剧组表示，将于4月20日至22日播出特别版内容\u2026","loadURL":"http://api.svipmovie.com/front/videoDetailApi/videoDetail.do?mediaId=7118aea2a76a4a22a203c07ca9d27c83","shareURL":"","pic":"http://y1.cnliveimg.com:8080/image/itv/2016/0330/7118aea2a76a4a22a203c07ca9d27c83_114242_101.jpg","title":"《太阳的后裔》将加播"},{"airTime":2016,"duration":"00:00:55","loadtype":"video","score":0,"angleIcon":"","dataId":"ec5e22da2a094ad592e561c56d5a2b53","description":"@TV娱乐前线：3月24日，数据显示，23日晚播出的《太阳的后裔》收视率为30.4%。","loadURL":"http://api.svipmovie.com/front/videoDetailApi/videoDetail.do?mediaId=ec5e22da2a094ad592e561c56d5a2b53","shareURL":"","pic":"http://y3.cnliveimg.com:8080/image/itv/2016/0324/ec5e22da2a094ad592e561c56d5a2b53_113164_101.jpg","title":"《太阳的后裔》国民剧"},{"airTime":2016,"duration":"00:01:07","loadtype":"video","score":0,"angleIcon":"","dataId":"5fe9f668b73246f099f2525a652a03ff","description":"@TV韩国动态：近日大火的韩剧《太阳的后裔》确定将制作中国版\u2026","loadURL":"http://api.svipmovie.com/front/videoDetailApi/videoDetail.do?mediaId=5fe9f668b73246f099f2525a652a03ff","shareURL":"","pic":"http://y3.cnliveimg.com:8080/image/itv/2016/0323/5fe9f668b73246f099f2525a652a03ff_113009_101.jpg","title":"《太阳的后裔》将翻拍"}]
@@ -464,7 +465,7 @@ public class DetailsBean {
                 this.childList = childList;
             }
 
-            public static class ChildListBean {
+            public static class ChildListBean implements Serializable{
                 /**
                  * airTime : 2016
                  * duration : 00:01:06

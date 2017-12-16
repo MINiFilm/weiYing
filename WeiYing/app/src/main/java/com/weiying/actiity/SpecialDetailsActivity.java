@@ -87,7 +87,7 @@ public class SpecialDetailsActivity extends BaseActivity implements SpecialDetai
 
         adapter = new MySpecialDetailsAdapter(SpecialDetailsActivity.this, listBeen);
         rvDetails.setAdapter(adapter);
-        adapter.setOnClicker(new MySpecialDetailsAdapter.OnClicker() {
+        adapter.setOnsClicker(new MySpecialDetailsAdapter.OnsClicker() {
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent(SpecialDetailsActivity.this,VideoDetailActivity.class);
