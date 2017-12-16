@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/dp170"
+    android:layout_width="@dimen/x170"
     android:gravity="center"
-    android:layout_height="@dimen/dp120"
+    android:layout_height="@dimen/y120"
     android:background="@drawable/border_white"
-    android:layout_margin="@dimen/dp10"
+    android:layout_margin="@dimen/x10"
     >
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/dp110">
+        android:layout_height="@dimen/y110">
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/special_iv"
-        android:layout_width="@dimen/dp160"
-        android:layout_height="@dimen/dp110"
+        android:layout_width="@dimen/x160"
+        android:layout_height="@dimen/y110"
         android:background="@mipmap/default_320"/>
 
     <TextView
         android:id="@+id/special_tv"
         android:background="#66000000"
-        android:layout_width="@dimen/dp160"
-        android:layout_height="@dimen/dp20"
+        android:layout_width="@dimen/x160"
+        android:layout_height="@dimen/y20"
         android:gravity="center"
         android:layout_alignParentBottom="true"
         android:textColor="#fff"/>

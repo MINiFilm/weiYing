@@ -82,11 +82,19 @@ public class SpecialDetailsActivity extends BaseActivity implements SpecialDetai
 
     @Override
     public void showDetailsData(SpectialDetailsBean spectialDetailsBean) {
-        List<SpectialDetailsBean.RetBean.ListBean> listBeen = spectialDetailsBean.getRet().getList();
+        final List<SpectialDetailsBean.RetBean.ListBean> listBeen = spectialDetailsBean.getRet().getList();
         Log.i("ppp", listBeen.size() + "");
 
         adapter = new MySpecialDetailsAdapter(SpecialDetailsActivity.this, listBeen);
         rvDetails.setAdapter(adapter);
+        adapter.setOnClicker(new MySpecialDetailsAdapter.OnClicker() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(SpecialDetailsActivity.this,VideoDetailActivity.class);
+                intent.putExtra("dataId",listBeen.get(position).getDataId());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
