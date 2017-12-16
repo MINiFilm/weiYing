@@ -65,6 +65,7 @@ public class MyChoiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
             }
             bannerViewHolder b=new bannerViewHolder(holder.itemView);
+
             //设置样式
             b.choice_banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
             //设置图片集合
